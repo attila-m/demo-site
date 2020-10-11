@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.format.DateTimeFormatter;
+
 @Controller
 public class MainController {
 
@@ -20,7 +22,7 @@ public class MainController {
 
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
-    public ModelAndView login(){
+    public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         return modelAndView;
@@ -28,12 +30,16 @@ public class MainController {
 
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value="/home", method = RequestMethod.GET)
-    public ModelAndView home(){
+    public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByUsername(auth.getName());
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = user.getLastLogin().format(formatter);
+
         modelAndView.addObject("username", user.getUsername());
-        modelAndView.addObject("lastLogin", user.getLastLogin());
+        modelAndView.addObject("lastLogin", formattedDateTime);
         modelAndView.setViewName("home");
         return modelAndView;
     }

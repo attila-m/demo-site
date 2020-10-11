@@ -17,9 +17,15 @@
 <div class="container">
     <div class="center-box">
         <div sec:authorize="isAuthenticated()">
-            Belépési adatok
-            <span th:utext="${username}"></span>
-            <span th:utext="${lastLogin}"></span>
+            <div class="main-content">
+                <h2>Belépési adatok</h2>
+                <br>
+                <h3>Felhasznaló:</h3>
+                <span th:utext="${username}"></span>
+                <br>
+                <h3>Utolsó sikeres bejelentkezés:</h3>
+                <span th:utext="${lastLogin}"></span>
+            </div>
         </div>
     </div>
 </div>

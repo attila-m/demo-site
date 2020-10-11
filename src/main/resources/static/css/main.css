@@ -1,8 +1,14 @@
 .center-box {
-    margin: 100px auto 50px;
+    margin: 50px auto 50px;
     font-family:'Roboto',sans-serif;
     width: 50%;
     padding: 15px;
+}
+.center-box {
+    font-family:'Roboto',sans-serif;
+    font-weight: bold;
+    border: 3px solid transparent;
+    border-color: #f2f2f2;
 }
 
 .footer {
