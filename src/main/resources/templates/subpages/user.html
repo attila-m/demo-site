@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>User</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -13,17 +12,11 @@
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">...</div>
-<div class="container">
-    <div class="center-box">
-        <div sec:authorize="isAuthenticated()">
-            Belépési adatok
-            <span th:utext="${username}"></span>
-            <span th:utext="${lastLogin}"></span>
-        </div>
-    </div>
+<div th:replace="fragments/header :: header"></div>
+<div class="center-box">
+    Ezt az aloldalt csak a „bejelentkezett felhasználó” szerepkörrel rendelkező felhasználók láthatják
 </div>
-<div th:replace="fragments/footer :: footer">...</div>
+<div th:replace="fragments/footer :: footer"></div>
 </body>
 
 </html>

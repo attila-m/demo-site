@@ -4,8 +4,6 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Home</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -13,17 +11,20 @@
 </head>
 
 <body>
-<div th:replace="fragments/header :: header">...</div>
-<div class="container">
-    <div class="center-box">
-        <div sec:authorize="isAuthenticated()">
-            Belépési adatok
-            <span th:utext="${username}"></span>
-            <span th:utext="${lastLogin}"></span>
+<div th:fragment="header">
+    <div class="top-nav">
+        <a th:href="@{/home}">Home</a>
+        <div sec:authorize="hasAnyAuthority('ADMIN, EDITOR')">
+            <a th:href="@{/editor}">Tartalomszerkesztők</a>
         </div>
+        <div sec:authorize="hasAnyAuthority('ADMIN, USER')">
+            <a th:href="@{/user}">Felhasználók</a>
+        </div>
+        <form th:action="@{/logout}" method="get">
+            <button class="btn btn-danger" type="Submit">Logout</button>
+        </form>
     </div>
 </div>
-<div th:replace="fragments/footer :: footer">...</div>
 </body>
 
 </html>

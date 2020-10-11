@@ -1,7 +1,7 @@
 package com.homework.demosite.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
@@ -28,7 +28,7 @@ public class User {
     private Boolean active;
 
     @Column(name = "last_login")
-    private Date lastLogin;
+    private LocalDateTime lastLogin;
 
     public Long getId() {
         return id;
@@ -70,11 +70,11 @@ public class User {
         this.roles = roles;
     }
 
-    public Date getLastLogin() {
+    public LocalDateTime getLastLogin() {
         return lastLogin;
     }
 
-    public void setLastLogin(Date lastLogin) {
+    public void setLastLogin(LocalDateTime lastLogin) {
         this.lastLogin = lastLogin;
     }
 }

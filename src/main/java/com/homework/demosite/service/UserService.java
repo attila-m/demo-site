@@ -5,7 +5,8 @@ import com.homework.demosite.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class UserService {
@@ -22,7 +23,7 @@ public class UserService {
     }
 
     public void updateLastLogin(User user) {
-        user.setLastLogin(new Date());
+        user.setLastLogin(LocalDateTime.now());
         userRepository.save(user);
     }
 }
