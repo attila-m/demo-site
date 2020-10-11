@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 
 <body>
 <div class="container">
     <div class="row">
         <div class="center-box">
-            <form th:action="@{/login}" method="POST">
+            <form id="login-form" th:action="@{/login}" method="POST">
                 <h3>Enter your ceredentials</h3>
                 <br/>
                 <input type="text" id="username" name="username" placeholder="Username"
@@ -30,11 +31,27 @@
                 </div>
                 <button class="btn btn-md btn-primary btn-block" name="Submit" value="Login" type="Submit"
                         th:text="Login"></button>
+                <br/>
+                <div th:if="${errorCounter} > 2">
+                    <div class="g-recaptcha" data-sitekey="6LdOLdYZAAAAAEd7cxMuUSxRbpmVFfkmwiGsHLp8"></div>
+                </div>
             </form>
+
         </div>
     </div>
 </div>
 <div th:replace="fragments/footer :: footer"></div>
 </body>
-
+<script>
+    document.getElementById("login-form").addEventListener("submit",function(evt)
+    {
+        var response = grecaptcha.getResponse();
+        if(response.length == 0)
+        {
+            alert("Captcha failed");
+            evt.preventDefault();
+            return false;
+        }
+    });
+</script>
 </html>

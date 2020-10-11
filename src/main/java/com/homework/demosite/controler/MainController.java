@@ -20,10 +20,16 @@ public class MainController {
     @Autowired
     private UserService userService;
 
+    private int counter = 0;
+
     @ResponseStatus(value = HttpStatus.OK)
     @RequestMapping(value={"/", "/login"}, method = RequestMethod.GET)
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
+
+        counter++;
+
+        modelAndView.addObject("errorCounter", counter);
         modelAndView.setViewName("login");
         return modelAndView;
     }
@@ -40,6 +46,7 @@ public class MainController {
 
         modelAndView.addObject("username", user.getUsername());
         modelAndView.addObject("lastLogin", formattedDateTime);
+        counter = 0;
         modelAndView.setViewName("home");
         return modelAndView;
     }
