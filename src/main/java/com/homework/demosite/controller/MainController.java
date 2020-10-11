@@ -1,4 +1,4 @@
-package com.homework.demosite.controler;
+package com.homework.demosite.controller;
 
 import com.homework.demosite.model.User;
 import com.homework.demosite.service.UserService;

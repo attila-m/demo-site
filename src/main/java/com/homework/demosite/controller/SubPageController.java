@@ -1,4 +1,4 @@
-package com.homework.demosite.controler;
+package com.homework.demosite.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
