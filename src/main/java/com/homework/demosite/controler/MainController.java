@@ -34,7 +34,6 @@ public class MainController {
         User user = userService.findUserByUsername(auth.getName());
         modelAndView.addObject("username", user.getUsername());
         modelAndView.addObject("lastLogin", user.getLastLogin());
-        userService.updateLastLogin(user);
         modelAndView.setViewName("home");
         return modelAndView;
     }
